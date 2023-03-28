@@ -36,48 +36,29 @@ dict_enteros_a_romanos = {
 
 }
 
-
-
 class RomanNumberError(Exception):
     pass
 
 
-def entero_a_romano(numero):
-    numero = "{:0>4d}".format(numero) #transformar en cadena
+def entero_a_romano(numero:int) -> str:
+    numero = "{:0>4d}".format(numero) # esto es para agregar cero por delante a un número de 3 dígitos.
     list_numero = list(numero) #transformar cadena en lista
     valor_romano = ""
+    longitud = len(list_numero)
     
-    #Optimizamos del for al while:
+    for i in range(longitud):
+        longitud = longitud - 1
+        list_numero[i] = list_numero[i] + "0" * longitud
+        valor_romano += dict_enteros_a_romanos.get(int(list_numero[i]), "")
+    '''
     contador = 0
     valor_num = 1000
     while contador < len(list_numero):
         list_numero[contador] = int(list_numero[contador])*valor_num
-        
-        if list_numero[contador] == 0:
-            valor_romano += ""
-        else:
-            valor_romano += dict_enteros_a_romanos.get(list_numero[contador])
+        valor_romano += dict_enteros_a_romanos.get(list_numero[contador], "")
         contador+=1
         valor_num /=10
-
-
-
-    '''for i in range(0, len(list_numero)):
-        print(list_numero[i])
-        if i == 0:
-            list_numero[i] = int(list_numero[i]) * 1000
-            valor_romano += millares.get(list_numero[i])
-        elif i == 1:
-            list_numero[i] = int(list_numero[i]) * 100
-            valor_romano += centenas.get(list_numero[i])
-        elif i == 2:
-            list_numero[i] = int(list_numero[i]) * 10
-            valor_romano += decenas.get(list_numero[i])
-        elif i == 3:
-            list_numero[i] = int(list_numero[i]) * 1
-            valor_romano += unidades.get(list_numero[i])
-'''
-    
+    '''    
 
     #for c,v in diccionario.items():
     #    print(c, "-", v) 
