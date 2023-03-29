@@ -36,8 +36,32 @@ dict_enteros_a_romanos = {
 
 }
 
+dict_romano_a_entero = {
+    'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000
+}
+
 class RomanNumberError(Exception):
     pass
+
+def romano_a_entero(valor:str)-> int:
+    lista_romano = list(valor)
+    valor_entero = 0
+    longitud = len(lista_romano)
+
+    for pos in range(longitud):        
+        if pos != 0:
+            if dict_romano_a_entero.get(lista_romano[pos-1], 0) < dict_romano_a_entero.get(lista_romano[pos], 0):
+                valor_entero -= dict_romano_a_entero.get(lista_romano[pos-1],0) # Restar al valor anterior. 
+                valor_entero += ( (dict_romano_a_entero.get(lista_romano[pos],0)) - (dict_romano_a_entero.get(lista_romano[pos-1],0)) )
+            else:
+                valor_entero += dict_romano_a_entero.get(lista_romano[pos],0)
+        else:
+            valor_entero += dict_romano_a_entero.get(lista_romano[pos],0)
+
+
+
+    return valor_entero
+
 
 
 def entero_a_romano(numero:int) -> str:
@@ -50,22 +74,10 @@ def entero_a_romano(numero:int) -> str:
         longitud = longitud - 1
         list_numero[i] = list_numero[i] + "0" * longitud
         valor_romano += dict_enteros_a_romanos.get(int(list_numero[i]), "")
-    '''
-    contador = 0
-    valor_num = 1000
-    while contador < len(list_numero):
-        list_numero[contador] = int(list_numero[contador])*valor_num
-        valor_romano += dict_enteros_a_romanos.get(list_numero[contador], "")
-        contador+=1
-        valor_num /=10
-    '''    
-
-    #for c,v in diccionario.items():
-    #    print(c, "-", v) 
-    
+        
     return valor_romano
 
-print( entero_a_romano(333) )
+print( romano_a_entero("IV") )
 
 
 
