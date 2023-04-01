@@ -40,6 +40,10 @@ dict_romano_a_entero = {
     'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000
 }
 
+restas = {'I':('V','X'),
+          'X':('L','C'),
+          'C':('D','M')}
+
 class RomanNumberError(Exception):
     pass
 
@@ -61,6 +65,12 @@ def romano_a_entero(valor:str)-> int:
             raise RomanNumberError("No se puede repetir el valor más de tres veces seguidas.")
         
         if dict_romano_a_entero.get(caracter_anterior,0) < dict_romano_a_entero.get(caracter,0):
+
+            if caracter_anterior == "D" or caracter_anterior == "L" or caracter_anterior == "V":
+                raise RomanNumberError("Los caracteres 'D', 'L' y 'V' no se pueden restar.")
+
+            if caracter_anterior != "" and caracter not in restas[caracter_anterior]:
+                raise RomanNumberError(f"{caracter_anterior} solo se puede restar de {restas[caracter_anterior][0]} y {restas[caracter_anterior][1]}")
             valor_entero -= dict_romano_a_entero.get(caracter_anterior,0)*2
 
         caracter_anterior = caracter
@@ -83,7 +93,7 @@ def entero_a_romano(numero:int) -> str:
         
     return valor_romano
 
-#print( romano_a_entero("XXXX") )
+#print( romano_a_entero("VM") )
 
 
 
