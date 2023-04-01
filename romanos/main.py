@@ -46,21 +46,27 @@ class RomanNumberError(Exception):
 def romano_a_entero(valor:str)-> int:
     lista_romano = list(valor)
     valor_entero = 0
-    longitud = len(lista_romano)
+    cont_repes = 0
+    caracter_anterior = ""
 
-    for pos in range(longitud):        
-        if pos != 0:
-            if dict_romano_a_entero.get(lista_romano[pos-1], 0) < dict_romano_a_entero.get(lista_romano[pos], 0):
-                valor_entero -= dict_romano_a_entero.get(lista_romano[pos-1],0) # Restar al valor anterior. 
-                valor_entero += ( (dict_romano_a_entero.get(lista_romano[pos],0)) - (dict_romano_a_entero.get(lista_romano[pos-1],0)) )
-            else:
-                valor_entero += dict_romano_a_entero.get(lista_romano[pos],0)
+    for caracter in lista_romano:
+        if caracter == caracter_anterior:
+            if caracter == "D" or caracter == "L" or caracter == "V":
+                raise RomanNumberError("Los caracteres 'D', 'L' y 'V' no se pueden repetir.")
+            cont_repes += 1
         else:
-            valor_entero += dict_romano_a_entero.get(lista_romano[pos],0)
+            cont_repes = 0
+        
+        if cont_repes >= 3:
+            raise RomanNumberError("No se puede repetir el valor más de tres veces seguidas.")
+        
+        if dict_romano_a_entero.get(caracter_anterior,0) < dict_romano_a_entero.get(caracter,0):
+            valor_entero -= dict_romano_a_entero.get(caracter_anterior,0)*2
 
+        caracter_anterior = caracter
+        valor_entero += dict_romano_a_entero.get(caracter,0)
 
-
-    return valor_entero
+    return valor_entero   
 
 
 
@@ -77,7 +83,7 @@ def entero_a_romano(numero:int) -> str:
         
     return valor_romano
 
-print( romano_a_entero("IV") )
+#print( romano_a_entero("XXXX") )
 
 
 
