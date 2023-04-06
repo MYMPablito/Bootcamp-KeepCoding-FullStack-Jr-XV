@@ -35,3 +35,9 @@ def test_romano_a_entero_restasX():
         romano_a_entero("XM")
     assert str( exceptionInfoR.value) == f"X solo se puede restar de L y C"
 
+def test_romano_a_entero_si_se_repite_no_se_pueden_restar_IXC():
+    with pytest.raises( RomanNumberError ) as exceptionInfoRep:
+        romano_a_entero("IIX")
+    assert str(exceptionInfoRep) == "El valor no puede restarse"
+
+

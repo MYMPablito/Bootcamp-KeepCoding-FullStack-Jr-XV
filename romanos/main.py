@@ -52,28 +52,38 @@ def romano_a_entero(valor:str)-> int:
     valor_entero = 0
     cont_repes = 0
     caracter_anterior = ""
+    caracter_ante_anterior = ""
 
     for caracter in lista_romano:
         if caracter == caracter_anterior:
-            if caracter == "D" or caracter == "L" or caracter == "V":
+            
+            if caracter in "DLV":
                 raise RomanNumberError("Los caracteres 'D', 'L' y 'V' no se pueden repetir.")
+                        
             cont_repes += 1
+            
+
         else:
             cont_repes = 0
         
         if cont_repes >= 3:
             raise RomanNumberError("No se puede repetir el valor más de tres veces seguidas.")
         
-        if dict_romano_a_entero.get(caracter_anterior,0) < dict_romano_a_entero.get(caracter,0):
+        if caracter_anterior and dict_romano_a_entero.get(caracter_anterior,0) < dict_romano_a_entero.get(caracter,0):
 
-            if caracter_anterior == "D" or caracter_anterior == "L" or caracter_anterior == "V":
+            if caracter_anterior in "DLV":
                 raise RomanNumberError("Los caracteres 'D', 'L' y 'V' no se pueden restar.")
 
-            if caracter_anterior != "" and caracter not in restas[caracter_anterior]:
+            if caracter not in restas[caracter_anterior]:
                 raise RomanNumberError(f"{caracter_anterior} solo se puede restar de {restas[caracter_anterior][0]} y {restas[caracter_anterior][1]}")
             valor_entero -= dict_romano_a_entero.get(caracter_anterior,0)*2
 
+            if caracter_anterior == caracter_ante_anterior and caracter_anterior in "IXC":
+                raise RomanNumberError("El valor no puede restarse")
+
+        caracter_ante_anterior = caracter_anterior
         caracter_anterior = caracter
+
         valor_entero += dict_romano_a_entero.get(caracter,0)
 
     return valor_entero   
@@ -81,6 +91,11 @@ def romano_a_entero(valor:str)-> int:
 
 
 def entero_a_romano(numero:int) -> str:
+    if numero < 0 or numero > 3999:
+        raise RomanNumberError("El límite es entre 0 y 3999")
+    if numero == 0:
+        return ""
+
     numero = "{:0>4d}".format(numero) # esto es para agregar cero por delante a un número de 3 dígitos.
     list_numero = list(numero) #transformar cadena en lista
     valor_romano = ""
@@ -93,7 +108,7 @@ def entero_a_romano(numero:int) -> str:
         
     return valor_romano
 
-#print( romano_a_entero("VM") )
+print( romano_a_entero("IIX") )
 
 
 
