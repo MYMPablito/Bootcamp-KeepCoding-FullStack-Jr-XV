@@ -33,19 +33,30 @@ class Pelota:
         self.contadorIzquierdo = 0
 
     def dibujar(self,pantalla):
-        pg.draw.circle( pantalla,self.color,(self.pos_x,self.pos_y), self.radio )
+        pg.draw.circle( pantalla,self.color,(self.pos_x - self.radio,self.pos_y - self.radio), self.radio )
 
-    def mover(self,x_max=800,y_max=600):
+    def mover(self,x_max=800,y_max=600, y_min=0, x_min=0):
         self.pos_x += self.vx
         self.pos_y += self.vy
-        if self.pos_y >= y_max - self.radio or self.pos_y < 0 + self.radio:
+        if (self.pos_y >= y_max - self.radio) or (self.pos_y < y_min + self.radio): #Rebote en eje y.
             self.vy *= -1
         
         if self.pos_x >= x_max + self.radio*5: #límite derecho x.
             self.vx *= -1
             self.contadorIzquierdo += 1
 
-        if self.pos_x < 0 - self.radio*5: #límite izquierdo x.
+        if self.pos_x < x_min - self.radio*5: #límite izquierdo x.
             self.vx *= -1
             self.contadorDerecho += 1 
+
+    def mostrar_marcador(self,pantalla):
+        fuente = pg.font.Font(None, 50)
+        jugador1 = fuente.render(str(self.contadorIzquierdo),0,(255,255,255))
+        jugador2 = fuente.render(str(self.contadorDerecho),0,(255,255,255))
+        textoj1 = fuente.render("Jugador 1",0,(255,255,255))
+        textoj2 = fuente.render("Jugador 2",0,(255,255,255))
+        pantalla.blit(textoj1,(135,15))
+        pantalla.blit(textoj2,(540,15))
+        pantalla.blit(jugador1,(200,70))
+        pantalla.blit(jugador2,(600,70))
          

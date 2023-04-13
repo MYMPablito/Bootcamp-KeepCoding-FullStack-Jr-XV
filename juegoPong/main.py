@@ -6,6 +6,9 @@ pg.init()
 
 pantalla_principal = pg.display.set_mode( (800,600) )
 pg.display.set_caption("Pong")
+
+
+
 #definir tasa de refresco de nuestro bucle de fotogramas, fps = fotograma por segundo.
 tasa_refresco = pg.time.Clock()
 
@@ -27,9 +30,8 @@ while not game_over:
     raqueta1.mover(pg.K_w, pg.K_s) #raqueta izquierda.
     raqueta2.mover(pg.K_UP, pg.K_DOWN) #raqueta derecha.
     pelota.mover()
-    print("Punto Derecho: ", pelota.contadorDerecho)
-    print("Punto Izquierdo: ", pelota.contadorIzquierdo)
-
+    #print("Punto Derecho: ", pelota.contadorDerecho)
+    #print("Punto Izquierdo: ", pelota.contadorIzquierdo)    
     
 
     pantalla_principal.fill( (0,128,94) )
@@ -38,6 +40,11 @@ while not game_over:
     pelota.dibujar(pantalla_principal)
     raqueta1.dibujar(pantalla_principal)
     raqueta2.dibujar(pantalla_principal)
+
+    pelota.mostrar_marcador(pantalla_principal)
+    
+
+
 
     pg.display.flip()
 
