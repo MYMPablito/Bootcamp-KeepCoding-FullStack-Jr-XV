@@ -17,12 +17,20 @@ raqueta2 = Raqueta( 786  , 300 )
 game_over = False
 while not game_over:
     #obtener la tasa de refresco en milisegundos.
-    valor_tasa = tasa_refresco.tick()#variables para controlar la velocidad entre fotogramas.
+    valor_tasa = tasa_refresco.tick(300)#variables para controlar la velocidad entre fotogramas.
 
 
     for evento in pg.event.get():
         if evento.type == pg.QUIT:
             game_over = True
+
+    raqueta1.mover(pg.K_w, pg.K_s) #raqueta izquierda.
+    raqueta2.mover(pg.K_UP, pg.K_DOWN) #raqueta derecha.
+    pelota.mover()
+    print("Punto Derecho: ", pelota.contadorDerecho)
+    print("Punto Izquierdo: ", pelota.contadorIzquierdo)
+
+    
 
     pantalla_principal.fill( (0,128,94) )
     pg.draw.line(pantalla_principal, (255,255,255), (400,0), (400,600), 15 ) #line (surface, color, start_pos, end_pos, width->ancho)
