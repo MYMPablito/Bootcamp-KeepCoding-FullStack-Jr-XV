@@ -41,6 +41,19 @@ while not game_over:
     raqueta1.dibujar(pantalla_principal)
     raqueta2.dibujar(pantalla_principal)
 
+    #Lógica de choque:
+    if pelota.derecha >= raqueta2.izquierda and\
+        pelota.izquierda <= raqueta2.derecha and\
+        pelota.abajo >= raqueta2.arriba and\
+        pelota.arriba <= raqueta2.abajo:
+        pelota.vx *= -1
+    
+    if pelota.derecha >= raqueta1.izquierda and\
+        pelota.izquierda <= raqueta1.derecha and\
+        pelota.abajo >= raqueta1.arriba and\
+        pelota.arriba <= raqueta1.abajo:
+        pelota.vx *= -1
+
     pelota.mostrar_marcador(pantalla_principal)
     
 

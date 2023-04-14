@@ -21,6 +21,19 @@ class Raqueta:
         elif estado_teclado[tecla_abajo] == True and self.pos_y < y_max - (self.h//2):
             self.pos_y += 1
 
+    @property
+    def derecha(self):
+        return self.pos_x + (self.w//2)
+    @property
+    def izquierda(self):
+        return self.pos_x - (self.w//2)
+    @property
+    def arriba(self):
+        return self.pos_y - (self.h//2)
+    @property
+    def abajo(self):
+        return self.pos_y + (self.h//2)
+
 class Pelota:
     def __init__(self,pos_x,pos_y,color=(255,255,255),radio=20,vx=1,vy=1):
         self.pos_x = pos_x
@@ -33,7 +46,7 @@ class Pelota:
         self.contadorIzquierdo = 0
 
     def dibujar(self,pantalla):
-        pg.draw.circle( pantalla,self.color,(self.pos_x - self.radio,self.pos_y - self.radio), self.radio )
+        pg.draw.circle( pantalla,self.color,(self.pos_x ,self.pos_y), self.radio )
 
     def mover(self,x_max=800,y_max=600, y_min=0, x_min=0):
         self.pos_x += self.vx
@@ -59,4 +72,16 @@ class Pelota:
         pantalla.blit(textoj2,(540,15))
         pantalla.blit(jugador1,(200,70))
         pantalla.blit(jugador2,(600,70))
+    @property
+    def derecha(self):
+        return self.pos_x + self.radio
+    @property
+    def izquierda(self):
+        return self.pos_x - self.radio
+    @property
+    def arriba(self):
+        return self.pos_y - self.radio
+    @property
+    def abajo(self):
+        return self.pos_y + self.radio
          
