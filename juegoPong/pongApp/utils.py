@@ -1,0 +1,7 @@
+
+
+BLANCO = (255,255,255)
+X_MAX = 800
+Y_MAX = 600
+X_MIN = 0
+Y_MIN = 0
