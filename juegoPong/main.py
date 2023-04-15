@@ -1,4 +1,8 @@
-from pongApp.pantallas import Partida
+from pongapp.controlador_pantallas import PantallaControlador
 
-juego = Partida()
-juego.bucle_fotograma()
+
+controlador = PantallaControlador()
+
+controlador.start()
+
+
