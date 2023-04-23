@@ -1,6 +1,5 @@
 import requests
-
-apikey = "0F4E06D8-5A69-4B70-9E6D-F582AC31F688" 
+from .utils import *
 
 # Ejercicio 3, creo un input para cargar la moneda digital:
 
@@ -9,7 +8,7 @@ moneda_cripto = input("Ingrese una criptomoneda conocida: ").upper()
 while moneda_cripto != "" and moneda_cripto.isalpha() == True:
 
     # Invocar al método get() con la url específica.
-    r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{moneda_cripto}/EUR?apikey={apikey}')
+    r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{moneda_cripto}/EUR?apikey={APIKEY}')
 
     respuesta = r.json()#la respuesta http en formato diccionario
 
