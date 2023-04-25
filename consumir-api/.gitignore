@@ -2,3 +2,4 @@
 **/__pycache/**
 appcoints/config.py
 appcoints/__pycache__/
+__pycache__/
