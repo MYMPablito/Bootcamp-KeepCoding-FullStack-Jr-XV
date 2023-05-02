@@ -11,13 +11,13 @@
 ### *KATAS DE PROGRAMACIÓN*
 
 
-- **romanos**: **Primer Kata**.Desarrollamos un programa en python sirviéndonos del módulo *pytest*. Con el cual podemos hacer la conversión de números romanos a enteros y viceversa.
+- **romanos**: Desarrollamos un programa en python sirviéndonos del módulo *pytest*. Con el cual podemos hacer la conversión de números romanos a enteros y viceversa.
 
 
 - **bolillas**: Mini proyecto elaborado para introducirnos al correcto uso de la librería *pygame* (elaboración de video juegos). Bolas rebotando en una pantalla.
 
-- **juegoPong**: **Segunda Kata**. Concebimos el juego "Pong" usando el framework de *pygame*. Asimismo lo personalizamos dándole una mejor presentación visual.
+- **juegoPong**: Concebimos el juego "Pong" usando el framework de *pygame*. Asimismo lo personalizamos dándole una mejor presentación visual.
 
-- **consumir-api**: Gestamos un programa que, haciendo peticiones HTTP  de apicoint.io gracias a la librería *requests*, muestra conversiones de distintas monedas reales hacia criptomonedas.
+- **consumir-api**: Gestamos un programa que, haciendo peticiones HTTP  de apicoint.io gracias a la librería *requests* con la ayuda también de *pytest*, muestra conversiones de distintas monedas reales hacia criptomonedas.
 
-- **hello-flask**: 
+- **hello-flask**: Aplicación introductoria al framework *flask*. 
