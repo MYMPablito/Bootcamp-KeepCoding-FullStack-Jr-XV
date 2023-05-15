@@ -17,10 +17,18 @@ def index():
         'monto': '-200'}   
     ]
 
-    return render_template("index.html", data = datos)
+    return render_template("index.html", data = datos, title = "Lista")
 
 @app.route("/new")
 def create():
-    return render_template("new.html")
+    return render_template("new.html", title = "Registro", tipoAccion = "Registro", tipoBoton = "Guardar")
+
+@app.route("/update")
+def edit():
+    return render_template("update.html", title = "Actualizar", tipoAccion = "Actualización", tipoBoton = "Editar")
+
+@app.route("/delete")
+def remove():
+    return render_template("delete.html", title = "Eliminar")
 
 

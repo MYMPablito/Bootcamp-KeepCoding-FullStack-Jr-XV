@@ -15,9 +15,21 @@ https://flask.palletsprojects.com/en/2.3.x/
 
 # Ejecución del programa:
 
-## Inicializar el servidor de flask:
+- Inicializar el servidor de flask:
 - en mac: ```export FLASK_APP=main.py```
 - en windows: ```set FLASK_APP=main.py```
+
+# Otra opción de ejecución:
+- Crear un archivo .env y dentro agregar lo siguiente:
+
+```
+FLASK_APP=main.py
+FLASK_DEBUG=True
+```
+
+- Luego para lanzarlo en la terminal, introducir el comando:
+
+- ``` flask run ```
 
 ## Comando para ejecutar el servidor:
 - ```flask --app main run```
